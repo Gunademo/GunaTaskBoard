@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+    function changeTextColorYellow(id){
+		if(document.getElementById('c2'+id).checked == false && document.getElementById('c3'+id).checked == false){
+			if(document.getElementById('c1'+id).checked == true){
+				document.getElementById('myID'+id).style.backgroundColor = '#FBF784';
+			}else{
+				document.getElementById('myID'+id).style.backgroundColor = 'white';
+			}
+		}
+    }
+
+    function changeTextColorBlue(id){
+		if(document.getElementById('c3'+id).checked == false){
+			if(document.getElementById('c2'+id).checked == true){
+				document.getElementById('myID'+id).style.backgroundColor = '#80E1FA';
+			}else{
+				if(document.getElementById('c1'+id).checked == true){
+				document.getElementById('myID'+id).style.backgroundColor = '#FBF784';
+				}else{
+				document.getElementById('myID'+id).style.backgroundColor = 'white';
+				}
+			}
+		}
+    }
+
+    function changeTextColorGreen(id){
+        if(document.getElementById('c3'+id).checked == true){
+            document.getElementById('myID'+id).style.backgroundColor = '#AAFB84';
+        }else{
+			if(document.getElementById('c2'+id).checked == true){
+				document.getElementById('myID'+id).style.backgroundColor = '#80E1FA';
+			}else if(document.getElementById('c1'+id).checked == true){
+				document.getElementById('myID'+id).style.backgroundColor = '#FBF784';
+			}else{
+            document.getElementById('myID'+id).style.backgroundColor = 'white';
+			}
+        }
+    }
+
+    function addTask(){
+        var content = document.getElementById('cont').value;
+        if(content != ""){
+            document.getElementById('mynum').innerHTML = parseInt(document.getElementById('mynum').innerHTML)+1
+            var num = document.getElementById('mynum').innerHTML;
+			document.getElementById('main').innerHTML = "<strong><label>Start</label> &nbsp;<label>Hold</label>  &nbsp;<label>Done</label>&nbsp;</strong>";
+            document.getElementById('mainDiv').innerHTML = document.getElementById('mainDiv').innerHTML+'<div id="'+num+'"><input type="checkbox" id = "c1'+num+'" onclick="changeTextColorYellow('+num+');"></input> &nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" id = "c2'+num+'" onclick="changeTextColorBlue('+num+');"></input> &nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" id = "c3'+num+'" onclick="changeTextColorGreen('+num+');"></input> &nbsp&nbsp&nbsp&nbsp<button type="button" class="but" height="20px" id="myID'+num+'">'+content+'</button><hr>';
+			document.getElementById("cont").value = "";
+        }
+        
+    }
+
+</script>
+
+<style>
+
+	
+.but {
+    background-color: white;
+    color: black;
+    border: 2px solid white;
+    width: fit-content;
+    height: 25px;
+    font-size: medium;
+	border-radius: 10px;
+}
+
+#cont{
+	border-radius: 5px;
+	width: 250px;
+	height: 25px;
+
+}
+
+.metric{
+    font-size: 18px;
+    font-family: cursive;
+
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+</style>
+
+<head>
+
+<body>
+
+    <label class="metric">Task: </label><input id="cont" type="text" placeholder="Enter here ..."></input> &nbsp;&nbsp;&nbsp;
+
+    <input class="button" type="button" onclick="addTask();" value="Add task"></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <br>
+	<label class="metric">Total Tasks: </label>
+    <label class="metric" id="mynum">0</label>
+
+
+    <br>
+<hr><br>
+    <div id="main">
+    </div>
+	<br>
+
+    <div id="mainDiv">
+
+    </div>
+
+
+
+</body>
+</html>
